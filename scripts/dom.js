@@ -71,7 +71,19 @@ const $ = function (selector) {
   }
   const hide = function (className){
     for (let i = 0; i < nodeList.length; i++){
-      nodeList[i].style.display - 'none';
+      nodeList[i].style.display = 'none';
+
+    }
+  }
+  const disable = function (className){
+    for (let i = 0; i < nodeList.length; i++){
+      nodeList[i].style.disable();
+
+    }
+  }
+  const enable = function (className){
+    for (let i = 0; i < nodeList.length; i++){
+      nodeList[i].style.enable();
 
     }
   }
@@ -88,6 +100,8 @@ const $ = function (selector) {
     show: show,
     hide: hide,
     on: on,
+    disable: disable,
+    enable: enable,
     val: val
   };
 }

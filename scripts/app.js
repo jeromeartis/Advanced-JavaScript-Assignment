@@ -13,18 +13,13 @@ const print = function (){
   render(inputStr);
 }
 
-const clearInput = function (){
-  console.log('remove content from input field');
-  $('#name').text("");
-}
-
 const runCommand = function (event){
   console.log('added');
   event.preventDefault();
   switch (command) {
     case 'add':
       add();
-      clearInput();
+      print();
       break;
     case 'verify':
       verify();
@@ -71,6 +66,7 @@ const update = function (){
       employeeList[i].officeNum = office;
       employeeList[i].phoneNum = phone;
     }
+
   }
   print();
 }
@@ -84,47 +80,57 @@ const deleteUser = function (){
   }
   print();
 }
-
+const reset = function (){
+  $('#list').empty();
+  command = '';
+  $('#wrap').hide();
+}
 const setView = function (){
   $('#list').empty();
   command = '';
-  $('form').show();
-  $('.extra-inputs').hide();
+  $('#wrap').hide();
   print();
 }
 
 const setAdd = function(){
   $('#list').empty();
   command = 'add';
-  $('form').show();
-  $('.extra-inputs').show();
+  $('#wrap').show();
+
+
 }
 
 const setVerify = function (){
+
   $('#list').empty();
   command = 'verify';
-  $('.extra-inputs').hide();
+  $('#name').show();
+  $('#submit').show();
+  $('#office').hide();
+  $('#phone').hide();
 }
 
 const setUpdate = function (){
   $('#list').empty();
   command = 'update';
-  $('form').show();
-  $('.extra-inputs').hide();
+  $('#name').show();
+  $('#office').show();
+  $('#submit').show();
+  $('#phone').show();
 }
 const setDelete = function (){
   $('#list').empty();
   command = 'delete';
-  $('form').show();
-  $('.extra-inputs').hide();
-
+  $('#name').show();
+  $('#office').hide();
+  $('#phone').hide();
+  $('#submit').show();
 }
-
 
 $('#view').on('click', setView);
 $('#add').on('click', setAdd);
 $('#delete').on('click', setDelete);
 $('#verify').on('click', setVerify);
 $('#update').on('click', setUpdate);
+$('.far').on('click', reset);
 $('#submit').on('click',runCommand);
-$('#submit').on('click', clearInput);
